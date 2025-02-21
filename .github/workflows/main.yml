@@ -1,4 +1,4 @@
-name: Main Taski workflow
+name: Taski workflow
 
 on:
   push:
@@ -198,6 +198,7 @@ jobs:
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
           sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 
+          
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
@@ -207,4 +208,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: Деплой успешно выполнен!
+        message: Деплой Taski успешно выполнен!
